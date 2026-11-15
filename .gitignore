@@ -1,0 +1,42 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+
+# C extensions
+*.so
+
+# Distribution / packaging
+.Python
+env/
+[v.]env*/
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# IDEA
+.project
+.idea
+*.iml
+
+# Allure ignore
+**/allure-report/
+**/output/
+**/allure-results/
+
+# env/virtualenv
+env
+.env
+.venv
+venv
+
+# PyTest
+.pytest_cache
+
+#pyenv
+.python-version
+
+# Qwen Code agent
+.qwen/
