@@ -2,11 +2,10 @@ import allure
 from playwright.sync_api import Locator, Page
 
 from config import Config
-from pages.base_page import BasePage
-from utils.url_helper import build_url
+from pages.store.base_store_page import BaseStorePage
 
 
-class ProductPage(BasePage):
+class ProductPage(BaseStorePage):
     # База магазина к ней добавляем путь product/{id}
     URL = Config.BASE_FRONT_URL_UI
 
@@ -36,11 +35,14 @@ class ProductPage(BasePage):
         self.qty_decrement = page.get_by_test_id("product-qty-decrement")
         self.qty_input = page.get_by_test_id("product-qty-input")
 
+        # Подпись «В корзине: N» — появляется, если товар уже лежит в корзине
+        self.in_cart = page.get_by_test_id("product-in-cart")
+
     @allure.step("Открыть страницу товара {product_id} напрямую")
-    def open_by_id(self, product_id: int) -> None:
-        # Отдельный метод, а не переопределение open()
-        # у BasePage.open() нет аргументов, mypy не примет другую сигнатуру
-        self.page.goto(build_url(self.URL, f"product/{product_id}", reset=1, delay=0))
+    def open_by_id(self, product_id: int, reset: bool = True) -> None:
+        # reset=False используем в сценариях с корзиной
+        # полная перезагрузка без reset сохраняет корзину из localStorage
+        self.open_path(f"product/{product_id}", reset=reset)
 
     def spec_row(self, spec_name: str) -> Locator:
         """Строка характеристики по её названию, например «Мощность»."""

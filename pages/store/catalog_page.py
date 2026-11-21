@@ -4,12 +4,11 @@ import allure
 from playwright.sync_api import Locator, Page
 
 from config import Config
-from pages.base_page import BasePage
+from pages.store.base_store_page import BaseStorePage
 from pages.store.components.product_card import ProductCard
-from utils.url_helper import build_url
 
 
-class CatalogPage(BasePage):
+class CatalogPage(BaseStorePage):
     URL = Config.BASE_FRONT_URL_UI
 
     def __init__(self, page: Page) -> None:
@@ -44,10 +43,8 @@ class CatalogPage(BasePage):
         self.active_page = self.pagination.locator("button[aria-current='page']")
 
     @allure.step("Открыть каталог магазина")
-    def open(self) -> None:
-        # reset=1 — чистое состояние площадки (пустая корзина, 24 товара)
-        # delay=0 — убираем искусственную задержку каталога, она здесь не проверяется
-        self.page.goto(build_url(self.URL, reset=1, delay=0))
+    def open(self, reset: bool = True) -> None:
+        self.open_path(reset=reset)
 
     def first_card(self) -> ProductCard:
         """Возвращает первую карточку каталога в порядке сортировки по умолчанию."""
