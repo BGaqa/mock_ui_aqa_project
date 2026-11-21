@@ -11,3 +11,6 @@ class ProductCard:
         # Название и цена товара
         self.name = root.get_by_test_id("product-card-name")
         self.price = root.get_by_test_id("product-card-price")
+
+        # Остаток на складе, «В наличии: 4» или «Нет в наличии»
+        self.stock = root.get_by_test_id("product-card-stock")

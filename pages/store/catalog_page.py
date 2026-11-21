@@ -28,6 +28,13 @@ class CatalogPage(BasePage):
         # Все карточки товаров на текущей странице каталога
         self.cards = page.get_by_test_id("product-card")
 
+        # Поиск по названию и бренду
+        self.search_input = page.get_by_test_id("catalog-search-input")
+
+        # Пустое состояние, блок «Ничего не найдено» и кнопка сброса внутри него
+        self.empty_state = page.get_by_test_id("catalog-empty")
+        self.empty_reset_button = page.get_by_test_id("catalog-empty-reset-button")
+
     @allure.step("Открыть каталог магазина")
     def open(self) -> None:
         # reset=1 — чистое состояние площадки (пустая корзина, 24 товара)
@@ -39,3 +46,14 @@ class CatalogPage(BasePage):
         # nth(0) здесь уместен, мы проверяем именно порядок по умолчанию
         # Для поиска конкретного товара будем использовать data-product-id, а не индекс
         return ProductCard(self.cards.nth(0))
+
+    @allure.step("Ввести в поиск: {text}")
+    def search(self, text: str) -> None:
+        # fill() заменяет содержимое поля целиком, поэтому очистка перед вводом не нужна
+        # пустая строка вернёт каталог к полному списку
+        self.search_input.fill(text)
+
+    @allure.step("Сбросить фильтры из пустого состояния")
+    def reset_filters_from_empty(self) -> None:
+        # Кнопка живёт внутри блока catalog-empty и доступна только при нулевом результате
+        self.empty_reset_button.click()

@@ -19,7 +19,7 @@ def test_catalog_opens(catalog_page: CatalogPage) -> None:
     expect(catalog_page.results_count).to_have_text("Найдено: 24")
     expect(catalog_page.results_count).to_have_attribute("data-count", "24")
 
-    # На странице ровно 8 карточек (24 товара на 3 страницы).
+    # На странице ровно 8 карточек (24 товара на 3 страницы)
     # Этот expect сам дожидается окончания загрузки каталога, отдельный wait не нужен
     expect(catalog_page.cards).to_have_count(8)
 
