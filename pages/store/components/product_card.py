@@ -22,6 +22,9 @@ class ProductCard:
         # Ссылка на страницу товара, клик по ней уводит на /store/product/{id}
         self.link = root.get_by_test_id("product-card-link")
 
+        # Кнопка добавления в корзину неактивна, если товара нет в наличии
+        self.add_button = root.get_by_test_id("product-card-add-button")
+
     @allure.step("Открыть страницу товара из карточки")
     def open(self) -> None:
         self.link.click()

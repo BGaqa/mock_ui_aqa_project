@@ -30,6 +30,12 @@ class ProductPage(BasePage):
         self.not_found = page.get_by_test_id("product-not-found")
         self.not_found_catalog_button = page.get_by_test_id("product-not-found-catalog-button")
 
+        # Кнопка добавления в корзину и степпер количества
+        self.add_button = page.get_by_test_id("product-add-button")
+        self.qty_increment = page.get_by_test_id("product-qty-increment")
+        self.qty_decrement = page.get_by_test_id("product-qty-decrement")
+        self.qty_input = page.get_by_test_id("product-qty-input")
+
     @allure.step("Открыть страницу товара {product_id} напрямую")
     def open_by_id(self, product_id: int) -> None:
         # Отдельный метод, а не переопределение open()
