@@ -24,6 +24,9 @@ class BaseStorePage(BasePage):
         # Тосты ошибок
         self.error_toasts = page.locator('[data-testid="toast"][data-severity="error"]')
 
+        # Любой тост независимо от severity
+        self.toasts = page.get_by_test_id("toast")
+
     @allure.step("Открыть страницу магазина")
     def open_path(self, path: str = "", reset: bool = True) -> None:
         # reset=1 очищает корзину и заказы, поэтому после первых добавлений

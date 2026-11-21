@@ -16,3 +16,6 @@ class CartRow:
 
         # Сумма строки, цена умноженная на количество
         self.total = root.get_by_test_id("cart-row-total")
+
+        # Кнопка удаления строки, открывает диалог подтверждения
+        self.remove_button = root.get_by_test_id("cart-row-remove-button")

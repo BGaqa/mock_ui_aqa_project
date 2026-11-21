@@ -36,3 +36,12 @@ def cart_small(catalog_page: CatalogPage, cart_page: CartPage) -> CartPage:
     catalog_page.add_product("Рулетка")
     catalog_page.header.open_cart()
     return cart_page
+
+
+@pytest.fixture
+def cart_with_two_products(catalog_page: CatalogPage, cart_page: CartPage) -> CartPage:
+    catalog_page.open()
+    catalog_page.add_product("Перфоратор")
+    catalog_page.add_product("Рулетка")
+    catalog_page.header.open_cart()
+    return cart_page
