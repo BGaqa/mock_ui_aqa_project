@@ -14,3 +14,6 @@ class ProductCard:
 
         # Остаток на складе, «В наличии: 4» или «Нет в наличии»
         self.stock = root.get_by_test_id("product-card-stock")
+
+        # Категория товара «Электроинструмент», «Защита» и т.д.
+        self.category = root.get_by_test_id("product-card-category")

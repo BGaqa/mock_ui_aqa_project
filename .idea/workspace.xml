@@ -5,10 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0f43944e-9d60-4c4a-b238-f81f72836980" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/tests/test_catalog_filters.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/test_catalog_pagination.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/price_parser.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/store/catalog_page.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/store/catalog_page.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/store/components/product_card.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/store/components/product_card.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/test_catalog_smoke.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_catalog_smoke.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,6 +38,9 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "Python tests.Python tests for tests.test_catalog_filters.test_category_and_in_stock_filters.executor": "Run",
+    "Python tests.Python tests for tests.test_catalog_filters.test_reset_filters.executor": "Run",
+    "Python tests.Python tests for tests.test_catalog_filters.test_sort_by_price_ascending.executor": "Run",
     "Python tests.Python tests for tests.test_catalog_search.test_reset_filters_from_empty_state.executor": "Run",
     "Python tests.Python tests for tests.test_catalog_search.test_search_by_brand_is_case_insensitive.executor": "Run",
     "Python tests.Python tests for tests.test_catalog_search.test_search_by_product_name.executor": "Run",
@@ -54,7 +59,55 @@
       <recent name="$PROJECT_DIR$" />
     </key>
   </component>
-  <component name="RunManager" selected="Python tests.Python tests for tests.test_catalog_search.test_reset_filters_from_empty_state">
+  <component name="RunManager" selected="Python tests.Python tests for tests.test_catalog_filters.test_reset_filters">
+    <configuration name="Python tests for tests.test_catalog_filters.test_category_and_in_stock_filters" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+      <module name="mock_ui_aqa_project" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="RUN_TOOL" value="" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;tests.test_catalog_filters.test_category_and_in_stock_filters&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Python tests for tests.test_catalog_filters.test_reset_filters" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+      <module name="mock_ui_aqa_project" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="RUN_TOOL" value="" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;tests.test_catalog_filters.test_reset_filters&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Python tests for tests.test_catalog_filters.test_sort_by_price_ascending" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+      <module name="mock_ui_aqa_project" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="RUN_TOOL" value="" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;tests.test_catalog_filters.test_sort_by_price_ascending&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
     <configuration name="Python tests for tests.test_catalog_search.test_reset_filters_from_empty_state" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
       <module name="mock_ui_aqa_project" />
       <option name="ENV_FILES" value="" />
@@ -68,54 +121,6 @@
       <option name="RUN_TOOL" value="" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
       <option name="_new_target" value="&quot;tests.test_catalog_search.test_reset_filters_from_empty_state&quot;" />
-      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
-      <method v="2" />
-    </configuration>
-    <configuration name="Python tests for tests.test_catalog_search.test_search_by_brand_is_case_insensitive" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
-      <module name="mock_ui_aqa_project" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="RUN_TOOL" value="" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;tests.test_catalog_search.test_search_by_brand_is_case_insensitive&quot;" />
-      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
-      <method v="2" />
-    </configuration>
-    <configuration name="Python tests for tests.test_catalog_search.test_search_by_product_name" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
-      <module name="mock_ui_aqa_project" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="RUN_TOOL" value="" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;tests.test_catalog_search.test_search_by_product_name&quot;" />
-      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
-      <method v="2" />
-    </configuration>
-    <configuration name="Python tests for tests.test_catalog_search.test_search_without_results_shows_empty_state" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
-      <module name="mock_ui_aqa_project" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="RUN_TOOL" value="" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;tests.test_catalog_search.test_search_without_results_shows_empty_state&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
@@ -137,11 +142,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python tests.Python tests for tests.test_catalog_search.test_reset_filters_from_empty_state" />
-        <item itemvalue="Python tests.Python tests for tests.test_catalog_search.test_search_without_results_shows_empty_state" />
-        <item itemvalue="Python tests.Python tests for tests.test_catalog_search.test_search_by_brand_is_case_insensitive" />
-        <item itemvalue="Python tests.Python tests for tests.test_catalog_search.test_search_by_product_name" />
+        <item itemvalue="Python tests.Python tests for tests.test_catalog_filters.test_reset_filters" />
+        <item itemvalue="Python tests.Python tests for tests.test_catalog_filters.test_sort_by_price_ascending" />
+        <item itemvalue="Python tests.Python tests for tests.test_catalog_filters.test_category_and_in_stock_filters" />
         <item itemvalue="Python tests.Python tests for tests.test_catalog_smoke.test_catalog_opens" />
+        <item itemvalue="Python tests.Python tests for tests.test_catalog_search.test_reset_filters_from_empty_state" />
       </list>
     </recent_temporary>
   </component>
