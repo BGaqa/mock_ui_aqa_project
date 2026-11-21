@@ -19,3 +19,20 @@ def product_page(page: Page) -> ProductPage:
 @pytest.fixture
 def cart_page(page: Page) -> CartPage:
     return CartPage(page)
+
+
+@pytest.fixture
+def cart_default(catalog_page: CatalogPage, cart_page: CartPage) -> CartPage:
+    catalog_page.open()
+    catalog_page.add_product("Перфоратор", times=2)
+    catalog_page.add_product("Рулетка")
+    catalog_page.header.open_cart()
+    return cart_page
+
+
+@pytest.fixture
+def cart_small(catalog_page: CatalogPage, cart_page: CartPage) -> CartPage:
+    catalog_page.open()
+    catalog_page.add_product("Рулетка")
+    catalog_page.header.open_cart()
+    return cart_page

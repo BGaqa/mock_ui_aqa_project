@@ -1,7 +1,7 @@
 import re
 
 import allure
-from playwright.sync_api import Locator, Page
+from playwright.sync_api import Locator, Page, expect
 
 from config import Config
 from pages.store.base_store_page import BaseStorePage
@@ -112,3 +112,14 @@ class CatalogPage(BaseStorePage):
         # pagination_pages уже отфильтрован по тексту-цифре
         # дополнительный фильтр выбирает кнопку с точным номером
         self.pagination_pages.filter(has_text=re.compile(rf"^{number}$")).click()
+
+    @allure.step("Добавить в корзину товар: {title} × {times}")
+    def add_product(self, title: str, times: int = 1) -> None:
+        # Поиск сужает выдачу до одной карточки ждём это ДО клика
+        # иначе клик может попасть в карточку из старой выдачи
+        # expect внутри page object здесь уместен: это не проверка результата,
+        # а внутренняя синхронизация метода перед действием
+        self.search(title)
+        expect(self.cards).to_have_count(1)
+        for _ in range(times):
+            self.first_card().add_button.click()
