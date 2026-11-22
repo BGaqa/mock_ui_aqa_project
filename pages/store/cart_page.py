@@ -46,6 +46,9 @@ class CartPage(BaseStorePage):
         self.empty = page.get_by_test_id("cart-empty")
         self.empty_catalog_button = page.get_by_test_id("cart-empty-catalog-button")
 
+        # Кнопка перехода к оформлению, ведёт на первый шаг чекаута
+        self.checkout_button = page.get_by_test_id("cart-checkout-button")
+
     @allure.step("Открыть корзину")
     def open(self, reset: bool = True) -> None:
         self.open_path("cart", reset=reset)
@@ -83,3 +86,7 @@ class CartPage(BaseStorePage):
         # корзина не очищается, поэтому оба клика живут в одном методе
         self.clear_button.click()
         self.clear_dialog_confirm.click()
+
+    @allure.step("Перейти к оформлению заказа из корзины")
+    def go_to_checkout(self) -> None:
+        self.checkout_button.click()

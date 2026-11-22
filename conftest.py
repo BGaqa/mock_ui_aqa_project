@@ -3,6 +3,7 @@ from playwright.sync_api import Page
 
 from pages.store.cart_page import CartPage
 from pages.store.catalog_page import CatalogPage
+from pages.store.checkout_page import CheckoutPage
 from pages.store.product_page import ProductPage
 
 
@@ -19,6 +20,11 @@ def product_page(page: Page) -> ProductPage:
 @pytest.fixture
 def cart_page(page: Page) -> CartPage:
     return CartPage(page)
+
+
+@pytest.fixture
+def checkout_page(page: Page) -> CheckoutPage:
+    return CheckoutPage(page)
 
 
 @pytest.fixture
