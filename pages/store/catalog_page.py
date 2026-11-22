@@ -42,6 +42,11 @@ class CatalogPage(BaseStorePage):
         # Активная кнопка страницы
         self.active_page = self.pagination.locator("button[aria-current='page']")
 
+        # Состояния загрузки каталога, скелетоны, блок ошибки и кнопка повтора
+        self.loading = page.get_by_test_id("catalog-loading")
+        self.error = page.get_by_test_id("catalog-error")
+        self.retry_button = page.get_by_test_id("catalog-retry-button")
+
     @allure.step("Открыть каталог магазина")
     def open(self, reset: bool = True) -> None:
         self.open_path(reset=reset)
@@ -123,3 +128,7 @@ class CatalogPage(BaseStorePage):
         expect(self.cards).to_have_count(1)
         for _ in range(times):
             self.first_card().add_button.click()
+
+    @allure.step("Повторить загрузку каталога")
+    def retry(self) -> None:
+        self.retry_button.click()
