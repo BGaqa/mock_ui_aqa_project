@@ -1,3 +1,5 @@
+import re
+
 import pytest
 from playwright.sync_api import Page, expect
 
@@ -5,6 +7,7 @@ from pages.store.cart_page import CartPage
 from pages.store.catalog_page import CatalogPage
 from pages.store.checkout_page import CheckoutPage
 from pages.store.order_page import OrderPage
+from pages.store.orders_page import OrdersPage
 from pages.store.product_page import ProductPage
 
 
@@ -79,3 +82,47 @@ def checkout_payment_step(cart_default: CartPage, checkout_page: CheckoutPage) -
     # Гарантируем, что тест стартует именно со шага оплаты
     expect(checkout_page.stepper).to_have_attribute("data-active-step", "2")
     return checkout_page
+
+
+@pytest.fixture
+def orders_page(page: Page) -> OrdersPage:
+    return OrdersPage(page)
+
+
+def _place_order(catalog_page: CatalogPage, cart_page: CartPage, checkout_page: CheckoutPage, by_card: bool) -> None:
+    """Оформляет один заказ самовывозом: картой или наличными.
+    Без reset, чтобы не стереть уже оформленные заказы."""
+    catalog_page.open(reset=False)
+    catalog_page.add_product("Перфоратор", times=2)
+    catalog_page.add_product("Рулетка")
+    catalog_page.header.open_cart()
+    cart_page.go_to_checkout()
+    checkout_page.fill_contacts("Вадим", "vadim@example.com", "+7 900 123-45-67")
+    checkout_page.next_step()
+    checkout_page.select_pickup()
+    checkout_page.next_step()
+    if by_card:
+        checkout_page.fill_card("4111111111111111", "1229", "123", "IVAN IVANOV")
+    else:
+        checkout_page.select_cash()
+    checkout_page.pay()
+    # Дожидаемся страницы заказа, заказ попадает в localStorage только после
+    # перехода. Без этого ожидания следующая навигация обрывает запись,
+    # и в списке заказов не хватает строки
+    expect(checkout_page.page).to_have_url(re.compile(r"/store/order\?.*number=ORD-"))
+
+
+@pytest.fixture
+def two_orders(
+    orders_page: OrdersPage,
+    catalog_page: CatalogPage,
+    cart_page: CartPage,
+    checkout_page: CheckoutPage,
+) -> OrdersPage:
+    """Два заказа в чистом браузере: ORD-1001 картой, ORD-1002 наличными.
+    Возвращает открытый список заказов."""
+    orders_page.open()
+    _place_order(catalog_page, cart_page, checkout_page, by_card=True)
+    _place_order(catalog_page, cart_page, checkout_page, by_card=False)
+    checkout_page.header.open_orders()
+    return orders_page
