@@ -27,6 +27,12 @@ class BaseStorePage(BasePage):
         # Любой тост независимо от severity
         self.toasts = page.get_by_test_id("toast")
 
+        # Страница «не найдено», блок, путь и кнопка возврата в каталог
+        # Живет в базе, потому что доступна с любого адреса магазина
+        self.not_found = page.get_by_test_id("not-found")
+        self.not_found_path = page.get_by_test_id("not-found-path")
+        self.not_found_catalog_button = page.get_by_test_id("not-found-catalog-button")
+
     @allure.step("Открыть страницу магазина")
     def open_path(self, path: str = "", reset: bool = True) -> None:
         # reset=1 очищает корзину и заказы, поэтому после первых добавлений
@@ -35,4 +41,10 @@ class BaseStorePage(BasePage):
         flags: dict[str, int] = {"delay": 0, "autohide": 0, "paymentDelay": 0}
         if reset:
             flags["reset"] = 1
+        self.page.goto(build_url(self.URL, path, **flags))
+
+    @allure.step("Открыть страницу магазина с произвольными флагами")
+    def open_with_flags(self, path: str = "", **flags: int) -> None:
+        # В отличие от open_path не добавляет ничего своего
+        # нужно для проверок переноса query-параметров, где важен точный набор флагов
         self.page.goto(build_url(self.URL, path, **flags))
