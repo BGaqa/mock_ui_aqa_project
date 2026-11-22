@@ -1,5 +1,5 @@
 import pytest
-from playwright.sync_api import Page
+from playwright.sync_api import Page, expect
 
 from pages.store.cart_page import CartPage
 from pages.store.catalog_page import CatalogPage
@@ -51,3 +51,12 @@ def cart_with_two_products(catalog_page: CatalogPage, cart_page: CartPage) -> Ca
     catalog_page.add_product("Рулетка")
     catalog_page.header.open_cart()
     return cart_page
+
+
+@pytest.fixture
+def checkout_delivery_step(cart_small: CartPage, checkout_page: CheckoutPage) -> CheckoutPage:
+    cart_small.go_to_checkout()
+    checkout_page.fill_contacts("Вадим", "vadim@example.com", "+7 900 123-45-67")
+    checkout_page.next_step()
+    expect(checkout_page.stepper).to_have_attribute("data-active-step", "1")
+    return checkout_page
