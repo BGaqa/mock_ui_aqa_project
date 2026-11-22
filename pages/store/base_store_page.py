@@ -33,6 +33,10 @@ class BaseStorePage(BasePage):
         self.not_found_path = page.get_by_test_id("not-found-path")
         self.not_found_catalog_button = page.get_by_test_id("not-found-catalog-button")
 
+        # Крестик закрытия тоста, отдельного testid у него нет,
+        # ищем по роли и доступному имени внутри самого тоста
+        self.toast_close_button = page.get_by_test_id("toast").get_by_role("button", name="Close")
+
     @allure.step("Открыть страницу магазина")
     def open_path(self, path: str = "", reset: bool = True) -> None:
         # reset=1 очищает корзину и заказы, поэтому после первых добавлений
@@ -48,3 +52,7 @@ class BaseStorePage(BasePage):
         # В отличие от open_path не добавляет ничего своего
         # нужно для проверок переноса query-параметров, где важен точный набор флагов
         self.page.goto(build_url(self.URL, path, **flags))
+
+    @allure.step("Закрыть тост крестиком")
+    def close_toast(self) -> None:
+        self.toast_close_button.click()
