@@ -72,6 +72,11 @@ class CheckoutPage(BaseStorePage):
         # Кнопка оплаты, в подписи лежит итог заказа
         self.pay_button = page.get_by_test_id("checkout-pay-button")
 
+        # Второй способ оплаты: наличные при получении
+        # При его выборе блок с полями карты скрывается целиком
+        self.payment_cash = page.get_by_test_id("checkout-payment-cash")
+        self.card_block = page.get_by_test_id("checkout-card")
+
     @allure.step("Открыть оформление заказа")
     def open(self, reset: bool = True) -> None:
         self.open_path("checkout", reset=reset)
@@ -115,3 +120,7 @@ class CheckoutPage(BaseStorePage):
     @allure.step("Оплатить заказ")
     def pay(self) -> None:
         self.pay_button.click()
+
+    @allure.step("Выбрать оплату наличными при получении")
+    def select_cash(self) -> None:
+        self.payment_cash.click()
