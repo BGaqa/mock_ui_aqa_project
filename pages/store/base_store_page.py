@@ -31,7 +31,8 @@ class BaseStorePage(BasePage):
     def open_path(self, path: str = "", reset: bool = True) -> None:
         # reset=1 очищает корзину и заказы, поэтому после первых добавлений
         # товара переходим только с reset=False: корзина хранится в localStorage
-        flags: dict[str, int] = {"delay": 0, "autohide": 0}
+        # paymentDelay=0 убирает двухсекундную «обработку оплаты»
+        flags: dict[str, int] = {"delay": 0, "autohide": 0, "paymentDelay": 0}
         if reset:
             flags["reset"] = 1
         self.page.goto(build_url(self.URL, path, **flags))

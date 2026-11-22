@@ -4,6 +4,7 @@ from playwright.sync_api import Page, expect
 from pages.store.cart_page import CartPage
 from pages.store.catalog_page import CatalogPage
 from pages.store.checkout_page import CheckoutPage
+from pages.store.order_page import OrderPage
 from pages.store.product_page import ProductPage
 
 
@@ -59,4 +60,22 @@ def checkout_delivery_step(cart_small: CartPage, checkout_page: CheckoutPage) ->
     checkout_page.fill_contacts("Вадим", "vadim@example.com", "+7 900 123-45-67")
     checkout_page.next_step()
     expect(checkout_page.stepper).to_have_attribute("data-active-step", "1")
+    return checkout_page
+
+
+@pytest.fixture
+def order_page(page: Page) -> OrderPage:
+    return OrderPage(page)
+
+
+@pytest.fixture
+def checkout_payment_step(cart_default: CartPage, checkout_page: CheckoutPage) -> CheckoutPage:
+    cart_default.go_to_checkout()
+    checkout_page.fill_contacts("Вадим", "vadim@example.com", "+7 900 123-45-67")
+    checkout_page.next_step()
+    # Самовывоз не требует адреса, поэтому со шага доставки проходим сразу
+    checkout_page.select_pickup()
+    checkout_page.next_step()
+    # Гарантируем, что тест стартует именно со шага оплаты
+    expect(checkout_page.stepper).to_have_attribute("data-active-step", "2")
     return checkout_page

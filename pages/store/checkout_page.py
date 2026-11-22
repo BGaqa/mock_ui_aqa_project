@@ -53,6 +53,25 @@ class CheckoutPage(BaseStorePage):
         # Кнопка возврата на предыдущий шаг
         self.back_button = page.get_by_test_id("checkout-back-button")
 
+        # Поля карты. Номер и срок маскируются самим полем
+        # вводим цифры без пробелов и слешей, формат проверяем отдельно
+        self.card_number_input = page.get_by_test_id("checkout-card-number-input")
+        self.card_expiry_input = page.get_by_test_id("checkout-card-expiry-input")
+        self.card_cvv_input = page.get_by_test_id("checkout-card-cvv-input")
+        self.card_holder_input = page.get_by_test_id("checkout-card-holder-input")
+
+        # Ошибки под полями карты
+        self.card_number_error = page.get_by_test_id("checkout-card-number-error")
+        self.card_expiry_error = page.get_by_test_id("checkout-card-expiry-error")
+        self.card_cvv_error = page.get_by_test_id("checkout-card-cvv-error")
+        self.card_holder_error = page.get_by_test_id("checkout-card-holder-error")
+
+        # Красный блок отказа банка, появляется над формой после неудачной оплаты
+        self.payment_error = page.get_by_test_id("checkout-payment-error")
+
+        # Кнопка оплаты, в подписи лежит итог заказа
+        self.pay_button = page.get_by_test_id("checkout-pay-button")
+
     @allure.step("Открыть оформление заказа")
     def open(self, reset: bool = True) -> None:
         self.open_path("checkout", reset=reset)
@@ -85,3 +104,14 @@ class CheckoutPage(BaseStorePage):
     @allure.step("Вернуться на предыдущий шаг оформления")
     def back(self) -> None:
         self.back_button.click()
+
+    @allure.step("Заполнить карту: {number}, {expiry}, {cvv}, {holder}")
+    def fill_card(self, number: str, expiry: str, cvv: str, holder: str) -> None:
+        self.card_number_input.fill(number)
+        self.card_expiry_input.fill(expiry)
+        self.card_cvv_input.fill(cvv)
+        self.card_holder_input.fill(holder)
+
+    @allure.step("Оплатить заказ")
+    def pay(self) -> None:
+        self.pay_button.click()
